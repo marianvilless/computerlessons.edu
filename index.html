@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marianville Secondary School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .main-layout {
+            display: flex;
+            flex: 1;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background: rgba(242, 242, 242, 0.95);
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header nav ul li {
+            margin: 0;
+        }
+
+        header nav ul li a {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 8px 6px;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #ee892b 0%, #d65a29 100%);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(238, 137, 43, 0.10);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            background: linear-gradient(135deg, #d65a29 0%, #b93e1a 100%);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(214, 90, 41, 0.3);
+            transform: translateY(-2px);
+        }
+
+        header nav ul li a:hover::before {
+            left: 100%;
+        }
+
+        .sidebar {
+            width: 200px;
+            background: linear-gradient(180deg, #fff3e6 0%, #ffe0b2 100%);
+            padding: 24px 0 0 0;
+            box-shadow: 2px 0 8px rgba(214, 90, 41, 0.07);
+            min-height: 100vh;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 14px 24px;
+            margin: 8px 12px;
+            text-decoration: none;
+            color: #c03b07;
+            background: #fff;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar ul li a:hover {
+            background: linear-gradient(135deg, #d65a29 0%, #b93e1a 100%);
+            color: #fff;
+            border-left-color: #ff6b00;
+            transform: translateX(8px);
+        }
+
+        .content {
+            flex: 1;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.95);
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        /* Page visibility control */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Lessons specific styles */
+        .lesson-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, #ee892b 0%, #d65a29 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(214, 90, 41, 0.2);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lesson-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .lesson-header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .lesson-section {
+            margin-bottom: 40px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lesson-section h2 {
+            color: #ee892b;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ee892b;
+            position: relative;
+        }
+
+        .lesson-section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0;
+            height: 3px;
+            background: #d65a29;
+            animation: expandWidth 0.8s ease-out;
+        }
+
+        @keyframes expandWidth {
+            to {
+                width: 100%;
+            }
+        }
+
+        .lesson-section h3 {
+            color: #d65a29;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        .lesson-section h2,
+        .lesson-section h3,
+        .lesson-section h4,
+        .question-section h4 {
+            margin-top: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .lesson-section p,
+        .question-section p,
+        .lesson-list li {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-section p {
+            padding: 10px 0;
+        }
+
+        .lesson-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lesson-list li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .lesson-list li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: #ee892b;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .topic-card {
+            background: linear-gradient(135deg, rgba(238, 137, 43, 0.05) 0%, rgba(214, 90, 41, 0.05) 100%);
+            border-left: 5px solid #ee892b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 20px rgba(214, 90, 41, 0.15);
+            border-left-color: #d65a29;
+        }
+
+        .topic-card h4 {
+            color: #d65a29;
+            margin-top: 0;
+            font-size: 1.1em;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6cc 100%);
+            border: 2px solid #ee892b;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            50% {
+                left: 100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .highlight-box h4 {
+            color: #ee892b;
+            margin-top: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-box p {
+            color: #666;
+            position: relative;
+            z-index: 1;
+        }
+
+        .question-section {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6eeff 100%);
+            border-left: 5px solid #4a90e2;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .question-section h4 {
+            color: #4a90e2;
+            margin-top: 0;
+        }
+
+        .question-section ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .question-section li {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ee892b 0%, #d65a29 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #d65a29 0%, #b93e1a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(214, 90, 41, 0.3);
+        }
+
+        .home-content {
+            text-align: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @media (max-width: 900px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                min-height: unset;
+                box-shadow: none;
+                padding: 0;
+            }
+            .content {
+                padding: 16px;
+            }
+            .lesson-header h1 {
+                font-size: 1.8em;
+            }
+            header nav ul {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header> 
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('lessons')">Lessons</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="exercises.html">Grade 11 ICT</a></li>
+                <li><a href="Grade12.html">Grade 12 ICT</a></li>
+                <li><a href="mathematics.html">Department</a></li>
+                <li><a href="Grade9.html">Grade 9 ICT</a></li>
+                <li><a href="#" onclick="showPage('lessons')">📚 Lessons</a></li>
+            </ul>
+        </aside>
+        <main class="content">
+            <!-- HOME PAGE -->
+            <div id="home" class="page active">
+                <div class="home-content">
+                    <h1>Welcome to Marianville Secondary School</h1>
+                    <p style="font-size: 1.1em; color: #666; margin-top: 20px;">
+                        Your educational hub for learning and development
+                    </p>
+                    <p style="margin-top: 30px; color: #999;">
+                        Navigate to <strong>Lessons</strong> to explore comprehensive course materials
+                    </p>
+                    <form method="post" style="margin-top: 40px;">
+                        <input name="name" placeholder="Enter student name" required style="padding: 10px; width: 250px; border: 2px solid #ee892b; border-radius: 6px;">
+                        <button type="submit" style="padding: 10px 30px; background: #ee892b; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; margin-left: 10px;">Add Student</button>
+                        <a href="lessons.html" class="back-button" style="margin-left:12px; display:inline-block;">📚 Open Lessons</a>
+                    </form>
+                </div>
+            </div>
+
+            <!-- LESSONS PAGE -->
+            <div id="lessons" class="page">
+                <div class="lesson-container">
+                    <div class="lesson-header">
+                        <h1>🔐 Computer and Data Security</h1>
+                        <p>Measures to protect computers and data — Part 2</p>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h2>Measures to protect computers and data</h2>
+                        <p>There are many threats to information systems used by organizations and individuals. Threats may be external, internal, accidental, or deliberate. Understanding the different kinds of threats helps in planning appropriate protections.</p>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h2>Threats</h2>
+                        <h3>External threats</h3>
+                        <p>Examples of external threats include theft of equipment or files, industrial espionage, viruses and malware, and hackers gaining unauthorized access.</p>
+
+                        <h3>Internal threats</h3>
+                        <p>Examples of internal threats include disgruntled employees who deliberately damage or erase files, employees who accidentally lose or damage data, or staff who leak confidential data to outsiders.</p>
+
+                        <h3>Accidental threats</h3>
+                        <p>Accidental threats include damage from fire, water or smoke, power loss and surges, software/hardware incompatibilities, and intermittent system or hardware failures.</p>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h2>Protection of data</h2>
+                        <h3>Backup procedures</h3>
+                        <p>Organizations keep backups to ensure systems can be restored after failure. Backups are part of a broader strategy to protect accuracy, integrity, timeliness and availability of data.</p>
+
+                        <h3>Types of backup</h3>
+                        <ul class="lesson-list">
+                            <li><strong>Full backup</strong> — every file is copied to the storage medium. It is comprehensive but may take a long time.</li>
+                            <li><strong>System backup</strong> — only system files are copied so the operating system can be recreated (user data not included).</li>
+                            <li><strong>Incremental backup</strong> — only files changed since the last backup are saved, using specialist software.</li>
+                            <li><strong>Selective backup</strong> — particular files chosen by the user are backed up.</li>
+                        </ul>
+
+                        <h3>Making backups</h3>
+                        <p>Formal procedures and specialist software are commonly used. Typical strategies combine regular full backups (e.g., weekly) with incremental backups (e.g., daily), and may include data replication and RAID systems for integrity.</p>
+
+                        <div class="highlight-box">
+                            <h4>Backup storage practices</h4>
+                            <p>Common measures include storing backup tapes off-site, replicating backup data across physical locations, and using cloud backup services for redundancy.</p>
+                        </div>
+
+                        <div class="topic-card">
+                            <h4>Key backup considerations</h4>
+                            <p><strong>What</strong> — which data or system files will be backed up?</p>
+                            <p><strong>When</strong> — when and how often will backups run, and how long will they take?</p>
+                            <p><strong>Who</strong> — who is responsible for running and verifying backups?</p>
+                            <p><strong>How</strong> — what storage medium and physical storage procedures will be used?</p>
+                        </div>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h2>Testing of backup strategy</h2>
+                        <p>It is necessary to verify that backups can be restored correctly. A test environment should be used to check that backup files are complete and that systems can be rebuilt from them.</p>
+                        <p>Individual users can use built-in backup utilities (for example, Windows Backup in Control Panel) to safeguard personal files.</p>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h2>Data security</h2>
+                        <p>When data is shared among many users it becomes vulnerable to improper access or misuse. Security measures ensure accuracy, integrity, timeliness and security of data.</p>
+
+                        <h3>Factors affecting data security</h3>
+                        <ul class="lesson-list">
+                            <li>Procedures for updates: additions, deletions and modifications of data.</li>
+                            <li>Access controls to ensure only authorized users can view data.</li>
+                            <li>User privileges to control who can modify or delete data.</li>
+                            <li>Backup procedures to protect data integrity against failures.</li>
+                            <li>Protection against external threats: hackers, viruses, power failures and disasters.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h2>Threats to data and files</h2>
+                        <p>Backups protect against loss from many situations:</p>
+                        <ul class="lesson-list">
+                            <li>Power surges or failures that can damage disks — many organisations use a UPS to allow controlled shutdowns.</li>
+                            <li>System software faults and software conflicts that corrupt files.</li>
+                            <li>Computer viruses that damage files — anti-virus software helps but must be kept up to date.</li>
+                            <li>Hardware malfunction where software may need reinstallation after repair.</li>
+                            <li>Physical damage to hard disks caused by movement while in use.</li>
+                            <li>Accidental deletion or unwanted modification of files by users.</li>
+                            <li>Theft or loss of computers — backups enable recreation of lost files on another machine.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h2>Storage</h2>
+                        <p>Data is commonly stored on hard disks, optical disks, tapes (for backup) and flash memory. High-integrity systems may use disk shadowing to maintain up-to-date copies on multiple disks.</p>
+                        <p>Secure and reliable backup procedures are essential to ensure ongoing data integrity.</p>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h2>Storing documents for the future</h2>
+                        <p>The longevity of a document depends on the technology used to produce it and the storage medium. Digital documents require careful planning to ensure future readability.</p>
+                    </div>
+
+                    <div class="question-section">
+                        <h4>Summary Questions</h4>
+                        <p>Multiple-Choice Questions</p>
+                        <ol>
+                            <li>Q1. Which of the following describes maintaining simultaneous, up-to-date duplicate copies of data on multiple hard disks to ensure high integrity?
+                                <br>A. Off-site backup &nbsp; B. Disk shadowing &nbsp; C. Flash memory archiving &nbsp; D. System software updating
+                            </li>
+                            <li>Q2. What is the primary purpose of a UPS in a data center?
+                                <br>A. Eliminate software bugs &nbsp; B. Prevent unauthorized access &nbsp; C. Allow controlled shutdown during power failure &nbsp; D. Increase storage longevity
+                            </li>
+                            <li>Q3. A user accidentally overwrites a critical file. Which measure addresses this?
+                                <br>A. Anti-virus software &nbsp; B. Restoring from a backup file &nbsp; C. Stricter modification privileges &nbsp; D. Running a disk defragmenter
+                            </li>
+                            <li>Q4. Security measures for shared systems aim to ensure which quality?
+                                <br>A. Sophification &nbsp; B. Redundancy &nbsp; C. Timeliness &nbsp; D. Longevity
+                            </li>
+                            <li>Q5. Which factor specifically regulates whether a user can delete or modify files?
+                                <br>A. User privileges and modification rights &nbsp; B. Procedures for external protection &nbsp; C. Hardware troubleshooting &nbsp; D. Storage media selection
+                            </li>
+                            <li>Q6. Which threat is described as errors in application or system software that require updates from vendors?
+                                <br>A. Computer viruses &nbsp; B. System bugs &nbsp; C. Hardware malfunctions &nbsp; D. Disk shadowing errors
+                            </li>
+                            <li>Q7. Moving a hard disk while in use most likely causes which issue?
+                                <br>A. Unauthorized access &nbsp; B. Software conflicts &nbsp; C. Physical damage requiring replacement or reformat &nbsp; D. Automatic privilege changes
+                            </li>
+                            <li>Q8. What two factors determine long-term longevity of a digital document?
+                                <br>A. Software bugs and anti-virus version &nbsp; B. The technology used to produce it and the storage medium &nbsp; C. Network bandwidth and user privileges &nbsp; D. UPS location and disk shadowing frequency
+                            </li>
+                            <li>Q9. Which storage medium is explicitly highlighted for backup purposes?
+                                <br>A. Optical disks &nbsp; B. Flash memory &nbsp; C. Hard disks &nbsp; D. Tapes
+                            </li>
+                            <li>Q10. Why does data sharing among many people create a need for security measures?
+                                <br>A. Increases paper longevity &nbsp; B. Prevents external hackers automatically &nbsp; C. Makes data vulnerable to improper access or use &nbsp; D. Eliminates need for off-site backups
+                            </li>
+                        </ol>
+
+                        <p>Further reading:</p>
+                        <ul class="lesson-list">
+                            <li><a href="https://www.bbc.co.uk/bitesize/guides/znnny4j/revision/6" target="_blank" rel="noopener">Fundamentals of cybersecurity (BBC Bitesize)</a></li>
+                            <li><a href="https://www.ibm.com/think/topics/data-security" target="_blank" rel="noopener">Data Security (IBM)</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h2>Recreating a document from a computer file</h2>
+                        <p>The ease with which the document can be retrieved and recreated depends on:</p>
+                        <ul class="lesson-list">
+                            <li>The computer operating system</li>
+                            <li>The software used</li>
+                            <li>The format in which the document is saved</li>
+                            <li>The technical demands of any compression or encryption applied to the file</li>
+                        </ul>
+
+                        <h3>Identifying a document</h3>
+                        <p>A document prepared using a computer is distinctively recognized by the operating system and the software used to produce the document. For example, a newsletter could be produced using Microsoft Word 2011 and Publisher 2011 on a computer running Windows. The document could be archived on a CD. This information would be the minimum required for another person to access the document without having to use trial and error.</p>
+
+                        <h3>Disk storage formats</h3>
+                        <p>If a document is to be accessed in the future — perhaps five, ten or twenty years from now — the storage medium used to archive the document is a factor in determining whether the document can be recreated. If the document was on a CD, for example, will future computers have a disk drive and will the drive be able to read the disk format?</p>
+                        <p>Consider the longevity of the storage medium and the optimal storage conditions. The floppy disk, invented in 1971, was widely used from the 1970s to the 2000s in various sizes (8", 5.25", 3.5"). Floppy disks have now been superseded by flash memory; data stored on floppy disks can now only be accessed using outdated hardware.</p>
+
+                        <h3>Opening a document in the future</h3>
+                        <p>Although a document can be stored on many media, there is no guarantee it will be retrievable in its original format. If the appropriate software or translators are missing, the document will be difficult to open. Factors that may limit the ability to recreate a document include:</p>
+                        <ul class="lesson-list">
+                            <li>Changes in operating systems</li>
+                            <li>Changes in application software (software that is not successful may disappear)</li>
+                            <li>Changes in standards for storing information</li>
+                            <li>Encryption schemes associated with the storage</li>
+                            <li>Use of compression schemes</li>
+                            <li>Less-than-optimal storage conditions for the medium, such as a damaged disk</li>
+                        </ul>
+                        <p>As Microsoft Word has evolved, Word documents have changed format. Current versions of Word will open documents created with older versions, but older versions may not open newer formats. For long-term archival purposes, documents should be stored in formats likely to remain accessible in future decades.</p>
+
+                        <h2>Disasters</h2>
+                        <p>A disaster is an event that occurs suddenly, generally with little warning, and causes significant damage. For ICT systems, a disaster renders an organization's computer resources and/or network inoperable.</p>
+
+                        <h3>Natural disasters</h3>
+                        <p>Catastrophic events — floods, cyclones, earthquakes or fires — can destroy buildings and equipment, requiring systems to be rebuilt from scratch. The task is to restore the organization to the state it was in prior to the disaster.</p>
+
+                        <h3>Technical failures</h3>
+                        <p>Man-made or technical failures may interrupt services. Examples include loss of telecommunications, key switches failing, important equipment failing, or wireless technology outages.</p>
+
+                        <h3>Disaster recovery plans</h3>
+                        <p>Disaster recovery plans help organizations recover from events that prevent normal operation. A key requirement is to resume normal operation within a reasonable time. A disaster recovery plan typically includes:</p>
+                        <ul class="lesson-list">
+                            <li>Key areas of vulnerability that will affect the organization</li>
+                            <li>Definition of what the organization regards as a disaster</li>
+                            <li>Identification of the disaster recovery team and roles</li>
+                            <li>Communication protocols for the organization and external partners</li>
+                            <li>Full description of backup and restore policies</li>
+                            <li>Description of hardware and software that may need recovery</li>
+                            <li>Location of off-site facilities and alternative processing capacity</li>
+                            <li>Contact details for all key personnel</li>
+                            <li>Steps to be taken in different scenarios (e.g., fire)</li>
+                            <li>Processes for damage assessment and recovery of systems or services</li>
+                        </ul>
+                        <p>Disaster recovery planning involves risk assessment; organizations must decide what risks they can accept. Some maintain off-site disaster recovery sites managed by vendors (for example, data centers), or use cloud services to replicate systems and data. Disaster recovery measures can be costly and may never be used, but the lack of such measures can be extremely costly during an unplanned disaster.</p>
+                        
+                            <img src="./static/drp.png" alt="Disaster Recovery Plan">
+                    </div>
+
+                    <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer style="text-align: center; padding: 20px; background: rgba(0, 0, 0, 0.05); color: #666; margin-top: auto;">
+        <p>&copy; Marianville Secondary School - Security Lessons by Mr. Marampau&trade;</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+    </script>
+</body>
+</html>
+
