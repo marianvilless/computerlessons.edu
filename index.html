@@ -299,6 +299,36 @@
             font-size: 1.1em;
         }
 
+        .lesson-link-card {
+            background: linear-gradient(135deg, rgba(238, 137, 43, 0.1) 0%, rgba(214, 90, 41, 0.1) 100%);
+            border: 2px solid #ee892b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            display: block;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lesson-link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(214, 90, 41, 0.2);
+            background: linear-gradient(135deg, rgba(238, 137, 43, 0.15) 0%, rgba(214, 90, 41, 0.15) 100%);
+        }
+
+        .lesson-link-card h3 {
+            color: #ee892b;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+
+        .lesson-link-card p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
         .highlight-box {
             background: linear-gradient(135deg, #fff9e6 0%, #ffe6cc 100%);
             border: 2px solid #ee892b;
@@ -451,7 +481,7 @@
                     </p>
                     <form method="post" style="margin-top: 40px;">
                         <input name="name" placeholder="Enter student name" required style="padding: 10px; width: 250px; border: 2px solid #ee892b; border-radius: 6px;">
-                        <button type="submit" style="padding: 10px 30px; background: #ee892b; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; margin-left: 10px;">Add Student</button>
+                        <button type="submit" style="padding: 10px 30px; background: #ee892b; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; margin-left: 10px;">Submit</button>
                         <a href="lessons.html" class="back-button" style="margin-left:12px; display:inline-block;">📚 Open Lessons</a>
                     </form>
                 </div>
@@ -462,12 +492,18 @@
                 <div class="lesson-container">
                     <div class="lesson-header">
                         <h1>🔐 Computer and Data Security</h1>
-                        <p>Measures to protect computers and data — Part 2</p>
+                        <p>Comprehensive Security Lessons and Resources</p>
                     </div>
+
+                    <a href="DigitalSignature_Malware.html" class="lesson-link-card">
+                        <h3>🔐 Digital Signatures and Malware</h3>
+                        <p>Understanding cryptographic signatures, biometric authentication, and malicious software threats including viruses, worms, trojans, and ransomware.</p>
+                        <div style="color: #ee892b; font-weight: 600;">→ View Lesson</div>
+                    </a>
 
                     <div class="lesson-section">
                         <h2>Measures to protect computers and data</h2>
-                        <p>There are many threats to information systems used by organizations and individuals. Threats may be external, internal, accidental, or deliberate. Understanding the different kinds of threats helps in planning appropriate protections.</p>
+                        <p>There are many threats to information systems used by organizations and individuals. Threats may be external, internal, accidental, or deliberate. Understanding the differences helps implement appropriate protection measures.</p>
                     </div>
 
                     <div class="lesson-section">
@@ -476,7 +512,7 @@
                         <p>Examples of external threats include theft of equipment or files, industrial espionage, viruses and malware, and hackers gaining unauthorized access.</p>
 
                         <h3>Internal threats</h3>
-                        <p>Examples of internal threats include disgruntled employees who deliberately damage or erase files, employees who accidentally lose or damage data, or staff who leak confidential data to outsiders.</p>
+                        <p>Examples of internal threats include disgruntled employees who deliberately damage or erase files, employees who accidentally lose or damage data, or staff who leak confidential information.</p>
 
                         <h3>Accidental threats</h3>
                         <p>Accidental threats include damage from fire, water or smoke, power loss and surges, software/hardware incompatibilities, and intermittent system or hardware failures.</p>
@@ -496,7 +532,7 @@
                         </ul>
 
                         <h3>Making backups</h3>
-                        <p>Formal procedures and specialist software are commonly used. Typical strategies combine regular full backups (e.g., weekly) with incremental backups (e.g., daily), and may include data replication and RAID systems for integrity.</p>
+                        <p>Formal procedures and specialist software are commonly used. Typical strategies combine regular full backups (e.g., weekly) with incremental backups (e.g., daily), and follow a 3-2-1 backup rule.</p>
 
                         <div class="highlight-box">
                             <h4>Backup storage practices</h4>
@@ -514,7 +550,7 @@
 
                     <div class="lesson-section">
                         <h2>Testing of backup strategy</h2>
-                        <p>It is necessary to verify that backups can be restored correctly. A test environment should be used to check that backup files are complete and that systems can be rebuilt from them.</p>
+                        <p>It is necessary to verify that backups can be restored correctly. A test environment should be used to check that backup files are complete and that systems can be rebuilt as intended.</p>
                         <p>Individual users can use built-in backup utilities (for example, Windows Backup in Control Panel) to safeguard personal files.</p>
                     </div>
 
@@ -548,7 +584,7 @@
 
                     <div class="lesson-section">
                         <h2>Storage</h2>
-                        <p>Data is commonly stored on hard disks, optical disks, tapes (for backup) and flash memory. High-integrity systems may use disk shadowing to maintain up-to-date copies on multiple disks.</p>
+                        <p>Data is commonly stored on hard disks, optical disks, tapes (for backup) and flash memory. High-integrity systems may use disk shadowing to maintain up-to-date copies of critical data.</p>
                         <p>Secure and reliable backup procedures are essential to ensure ongoing data integrity.</p>
                     </div>
 
@@ -583,13 +619,13 @@
                                 <br>A. Unauthorized access &nbsp; B. Software conflicts &nbsp; C. Physical damage requiring replacement or reformat &nbsp; D. Automatic privilege changes
                             </li>
                             <li>Q8. What two factors determine long-term longevity of a digital document?
-                                <br>A. Software bugs and anti-virus version &nbsp; B. The technology used to produce it and the storage medium &nbsp; C. Network bandwidth and user privileges &nbsp; D. UPS location and disk shadowing frequency
+                                <br>A. Software bugs and anti-virus version &nbsp; B. The technology used to produce it and the storage medium &nbsp; C. Network bandwidth and user privileges &nbsp; D. Printer quality and file size
                             </li>
                             <li>Q9. Which storage medium is explicitly highlighted for backup purposes?
                                 <br>A. Optical disks &nbsp; B. Flash memory &nbsp; C. Hard disks &nbsp; D. Tapes
                             </li>
                             <li>Q10. Why does data sharing among many people create a need for security measures?
-                                <br>A. Increases paper longevity &nbsp; B. Prevents external hackers automatically &nbsp; C. Makes data vulnerable to improper access or use &nbsp; D. Eliminates need for off-site backups
+                                <br>A. Increases paper longevity &nbsp; B. Prevents external hackers automatically &nbsp; C. Makes data vulnerable to improper access or use &nbsp; D. Eliminates file types
                             </li>
                         </ol>
 
@@ -611,35 +647,25 @@
                         </ul>
 
                         <h3>Identifying a document</h3>
-                        <p>A document prepared using a computer is distinctively recognized by the operating system and the software used to produce the document. For example, a newsletter could be produced using Microsoft Word 2011 and Publisher 2011 on a computer running Windows. The document could be archived on a CD. This information would be the minimum required for another person to access the document without having to use trial and error.</p>
+                        <p>A document prepared using a computer is distinctively recognized by the operating system and the software used to produce the document.</p>
 
                         <h3>Disk storage formats</h3>
-                        <p>If a document is to be accessed in the future — perhaps five, ten or twenty years from now — the storage medium used to archive the document is a factor in determining whether the document can be recreated. If the document was on a CD, for example, will future computers have a disk drive and will the drive be able to read the disk format?</p>
-                        <p>Consider the longevity of the storage medium and the optimal storage conditions. The floppy disk, invented in 1971, was widely used from the 1970s to the 2000s in various sizes (8", 5.25", 3.5"). Floppy disks have now been superseded by flash memory; data stored on floppy disks can now only be accessed using outdated hardware.</p>
+                        <p>If a document is to be accessed in the future — perhaps five, ten or twenty years from now — the storage medium used to archive the document is a factor in determining accessibility.</p>
 
                         <h3>Opening a document in the future</h3>
-                        <p>Although a document can be stored on many media, there is no guarantee it will be retrievable in its original format. If the appropriate software or translators are missing, the document will be difficult to open. Factors that may limit the ability to recreate a document include:</p>
-                        <ul class="lesson-list">
-                            <li>Changes in operating systems</li>
-                            <li>Changes in application software (software that is not successful may disappear)</li>
-                            <li>Changes in standards for storing information</li>
-                            <li>Encryption schemes associated with the storage</li>
-                            <li>Use of compression schemes</li>
-                            <li>Less-than-optimal storage conditions for the medium, such as a damaged disk</li>
-                        </ul>
-                        <p>As Microsoft Word has evolved, Word documents have changed format. Current versions of Word will open documents created with older versions, but older versions may not open newer formats. For long-term archival purposes, documents should be stored in formats likely to remain accessible in future decades.</p>
+                        <p>Although a document can be stored on many media, there is no guarantee it will be retrievable in its original format. Challenges include changes in operating systems, application software evolution, storage standard changes, and encryption/compression schemes.</p>
 
                         <h2>Disasters</h2>
-                        <p>A disaster is an event that occurs suddenly, generally with little warning, and causes significant damage. For ICT systems, a disaster renders an organization's computer resources and/or network inoperable.</p>
+                        <p>A disaster is an event that occurs suddenly, generally with little warning, and causes significant damage. For ICT systems, a disaster renders an organization's computer systems inoperable.</p>
 
                         <h3>Natural disasters</h3>
-                        <p>Catastrophic events — floods, cyclones, earthquakes or fires — can destroy buildings and equipment, requiring systems to be rebuilt from scratch. The task is to restore the organization to the state it was in prior to the disaster.</p>
+                        <p>Catastrophic events — floods, cyclones, earthquakes or fires — can destroy buildings and equipment, requiring systems to be rebuilt from scratch.</p>
 
                         <h3>Technical failures</h3>
-                        <p>Man-made or technical failures may interrupt services. Examples include loss of telecommunications, key switches failing, important equipment failing, or wireless technology outages.</p>
+                        <p>Man-made or technical failures may interrupt services. Examples include loss of telecommunications, key switches failing, or wireless technology disruptions.</p>
 
                         <h3>Disaster recovery plans</h3>
-                        <p>Disaster recovery plans help organizations recover from events that prevent normal operation. A key requirement is to resume normal operation within a reasonable time. A disaster recovery plan typically includes:</p>
+                        <p>Disaster recovery plans help organizations recover from events that prevent normal operation. Key components include vulnerability assessment, team roles, communication protocols, backup policies, and off-site recovery capabilities.</p>
                         <ul class="lesson-list">
                             <li>Key areas of vulnerability that will affect the organization</li>
                             <li>Definition of what the organization regards as a disaster</li>
@@ -652,9 +678,6 @@
                             <li>Steps to be taken in different scenarios (e.g., fire)</li>
                             <li>Processes for damage assessment and recovery of systems or services</li>
                         </ul>
-                        <p>Disaster recovery planning involves risk assessment; organizations must decide what risks they can accept. Some maintain off-site disaster recovery sites managed by vendors (for example, data centers), or use cloud services to replicate systems and data. Disaster recovery measures can be costly and may never be used, but the lack of such measures can be extremely costly during an unplanned disaster.</p>
-                        
-                            <img src="./static/drp.png" alt="Disaster Recovery Plan">
                     </div>
 
                     <button class="back-button" onclick="showPage('home')">← Back to Home</button>
@@ -683,4 +706,3 @@
     </script>
 </body>
 </html>
-
