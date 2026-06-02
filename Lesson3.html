@@ -1,107 +1,530 @@
-A. Cleaning Agents
-What is it? Its' purpose
-Examples 
-Demonstration
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Failures & Security - Marianville Secondary School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-B. System failures
-Computer system failures happen in two different ways:
-1. Hardware failure
-  1.1. What is it? 
-      A hardware failure is when a component in the hardware fails and causes the computer to fail. 
-      Typical failures include:
-        <ul>
-          <li>A hard disk failure: the hard disk is a physical device and the performance degrades over time</li>
-          <li>Failure of the mainboard</li>
-        </ul>
-    <h3> counter measures</h3>
-    <p>A hard disk can be replaced, but to return the computer to the state it was in, backups need to have been carried
-    out and be up to date. A mainboard can easily be replaced</p> <br>
-      <p>Most computers are purchased with a warranty provision from one to three years. The waranty will repair hardware. 
-      Depending on the terms of the warranty, the computer will be repaired on-site or it may need to be returned to either
-      the place of purchase or a service centre.</p> <br>
-          <p>Many hardware failures do not result in the loss of data. However, a hard disk failure may well result in the
-          the loss of data</p>
-          
-                <h3>Examples of hardware failure</h3>
-                      <ul><li></li></ul>
-    
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
 
-                            <h3>2. Software failure</h3>
-                              <h4>What is Software failure?</h4>
-                          <p>Software failures are usually related to the corruption of the operating system
-                          software. These will often require re-installation of the operating system (OS)</p>
+        .main-layout {
+            display: flex;
+            flex: 1;
+        }
 
-                              <h3>Eaxmples of OS</h3>
-                                  <ul>
-                                    <li>Windows: Windows 7, Windows 8, Windows 10, Windows 11 (latest)</li>
-                                      <li>MacOS: MacOS Sierra, MacOS Sonoma, MacOS Catalina, etc</li>
-                                        <li>Linux: </li>
-                                      <li>Android: </li>
-                                  </ul>
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background: rgba(242, 242, 242, 0.95);
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
 
-  
-                           <h3>Examples of system failure</h3>
+        header nav ul li {
+            margin: 0;
+        }
 
-Exercise
+        header nav ul li a {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 8px 6px;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #ee892b 0%, #d65a29 100%);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(238, 137, 43, 0.10);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
 
-C. Computer Theft & Vandalism
-  What is theft and vandalism? Computer theft is a significant problem for individuals and organizations. There are two 
-issues concerned with computer theft. 
-  * Physical replacement of the computer, including cost.
-  * Loss of data that can be difficult to recover.
+        header nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
 
-1. Effects of theft/vandalism
+        header nav ul li a:hover {
+            background: linear-gradient(135deg, #d65a29 0%, #b93e1a 100%);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(214, 90, 41, 0.3);
+            transform: translateY(-2px);
+        }
 
-Associated with this is the potential for unauthorized access to private and personal data. The Australian newspaper
-reported on 11 June 2011 that:
-  A computer containing details of high-flying board members was stolen when thieves broke into the Australian
-  Institute of Company Directors' office.
-  The PC hard disk contained 66 000 records, including names, addresses, phone numbers and birth dates of 28 000 members.
-  The rest belonged to clients. 
-  Some records had the names of personal assistants and their email addresses. 
+        header nav ul li a:hover::before {
+            left: 100%;
+        }
 
-In fact, the physical cost of replacing a computer may well be very small compared to the cost of restoring data and the risks associated 
-with the unauthorized access to data. 
-Notebook computers are particularly vulnerable to theft. Notebook computers left in a visible position in vehicles can easily
-be stolen. Students carrying notebook computers to and from school are also vulnerable to mugging and theft. 
+        .sidebar {
+            width: 200px;
+            background: linear-gradient(180deg, #fff3e6 0%, #ffe0b2 100%);
+            padding: 24px 0 0 0;
+            box-shadow: 2px 0 8px rgba(214, 90, 41, 0.07);
+            min-height: 100vh;
+        }
 
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-  1.1. Preventive measures & counter measures
-Some companies have installed tracking devices in notebook computers, making the computer difficult to dispose of without
-detection. The carful choice of uesr names, passwords and other biometric protection can render a stolen computer useless. 
+        .sidebar ul li {
+            margin: 0;
+        }
 
-Some of the steps that can be taken to reduce the possibility of notebook theft are:
-*Never leave the computer in a visible position in a vehicle
-*Carry the comptuer in a nondescript bag, not an obvious computer bag. 
-*Do not leave notebok computer in a meeting room if you need to leave the room
-*Install a cable lock on the notebook computer
-*Backup the data and keep the backups separately from the computer
-*Ensure that your user name and password are hidden. 
+        .sidebar ul li a {
+            display: block;
+            padding: 14px 24px;
+            margin: 8px 12px;
+            text-decoration: none;
+            color: #c03b07;
+            background: #fff;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
 
-Vandalism is malicious damage to a computer. Vandalism can be prevented by ensuring ther people do not have 
-access to the computer. The steps above for preventing theft are also useful in the prevention of vandalsim.
+        .sidebar ul li a:hover {
+            background: linear-gradient(135deg, #d65a29 0%, #b93e1a 100%);
+            color: #fff;
+            border-left-color: #ff6b00;
+            transform: translateX(8px);
+        }
 
-Activity2G. Protecting data in the workplace
-Adline Pty Ltd is an advertising agency with 20 employees. There are 15 computers that are networked. Three people work in reception,
-which is also the main office. Jane and Frank are full-time employees. Gail works three half-days per week. Jane
-manually operates accounting software. Frank operates the switchboard and does general office duties. Gail provides
-technical support including hardware installation and software support. 
+        .content {
+            flex: 1;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.95);
+            min-height: 100vh;
+            overflow-y: auto;
+        }
 
-Advise on the following practices and comment on how each of them could be improved. 
-1. Jane is the only person who knows how to back up the accounting software. This is not a problem as she works full-time.
-2. Jane currently backs up the accounting software once per week. 
-3. Jane backs up the accounting program as well as the data files on a 100 MB disk.
-4. Jane locks the 100 MB backup disk in the office safe which is in reception.
-5. Frank enters meeting times in the calender which is accessed by the employees.
-Frank makes a backup of the meeting files at irregular intervals. 
-6. Frank, on one occasion, worked from a backup copy stored on the hard disk which did not have the current week's entries. 
-7. Frank is a novice computer user and reads computer magazines and manuals at work to find out how to use a computer.
-8. Frank logs all deliveries to the office in a database created by Gail. The databaes is still a work in progress
-and Gail will complete it when she has time. Sometimes Frank will enter the same delivery twice. 
-9. Frank, from time to time, creates letters to send to cilents. He does not usually name the letter file until he saves the letter 
-after it has been printed. Sometimes the computer freezesas the letter is being printed. 
-10. Gail recently isntalled new browser software on the computers in reception when working late one evening. 
-Both Jane and Frank mystified about the changes when they turn on their computers the next morning. 
+        .lesson-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
 
+        .lesson-header {
+            background: linear-gradient(135deg, #ee892b 0%, #d65a29 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(214, 90, 41, 0.2);
+            animation: slideDown 0.6s ease-out;
+        }
 
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
+        .lesson-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .lesson-header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .lesson-section {
+            margin-bottom: 40px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lesson-section h2 {
+            color: #ee892b;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ee892b;
+            position: relative;
+        }
+
+        .lesson-section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0;
+            height: 3px;
+            background: #d65a29;
+            animation: expandWidth 0.8s ease-out;
+        }
+
+        @keyframes expandWidth {
+            to {
+                width: 100%;
+            }
+        }
+
+        .lesson-section h3 {
+            color: #d65a29;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        .lesson-section h2,
+        .lesson-section h3,
+        .lesson-section h4,
+        .question-section h4 {
+            margin-top: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .lesson-section p,
+        .question-section p,
+        .lesson-list li {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-section p {
+            padding: 10px 0;
+        }
+
+        .lesson-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lesson-list li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .lesson-list li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: #ee892b;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .topic-card {
+            background: linear-gradient(135deg, rgba(238, 137, 43, 0.05) 0%, rgba(214, 90, 41, 0.05) 100%);
+            border-left: 5px solid #ee892b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 20px rgba(214, 90, 41, 0.15);
+            border-left-color: #d65a29;
+        }
+
+        .topic-card h4 {
+            color: #d65a29;
+            margin-top: 0;
+            font-size: 1.1em;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6cc 100%);
+            border: 2px solid #ee892b;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            50% {
+                left: 100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .highlight-box h4 {
+            color: #ee892b;
+            margin-top: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-box p {
+            color: #666;
+            position: relative;
+            z-index: 1;
+        }
+
+        .question-section {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6eeff 100%);
+            border-left: 5px solid #4a90e2;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .question-section h4 {
+            color: #4a90e2;
+            margin-top: 0;
+        }
+
+        .question-section ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .question-section li {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ee892b 0%, #d65a29 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #d65a29 0%, #b93e1a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(214, 90, 41, 0.3);
+        }
+
+        @media (max-width: 900px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                min-height: unset;
+                box-shadow: none;
+                padding: 0;
+            }
+            .content {
+                padding: 16px;
+            }
+            .lesson-header h1 {
+                font-size: 1.8em;
+            }
+            header nav ul {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Lessons</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="exercises.html">Grade 11 ICT</a></li>
+                <li><a href="Grade12.html">Grade 12 ICT</a></li>
+                <li><a href="mathematics.html">Department</a></li>
+                <li><a href="Grade9.html">Grade 9 ICT</a></li>
+                <li><a href="index.html">📚 Lessons</a></li>
+            </ul>
+        </aside>
+        <main class="content">
+            <div class="lesson-container">
+                <div class="lesson-header">
+                    <h1>🖥️ System Failures & Security</h1>
+                    <p>Understanding hardware failures, software failures, theft, and vandalism</p>
+                </div>
+
+                <div class="lesson-section">
+                    <h2>Cleaning Agents</h2>
+                    <p>A cleaning agent is software that is used to help keep your computer operating effectively. A cleaning agent will remove unwanted files and folders from your computer.</p>
+                    <p>The agents usually give you configuration options about which files are to be cleared, e.g., log files and temporary folders. By removing unwanted files, it can free up disk space on the computer and will make it easier to carry out file defragmentation and speed up other disk-intensive activities.</p>
+                </div>
+
+                <div class="lesson-section">
+                    <h2>System Failures</h2>
+                    <p>Computer system failures happen in two different ways:</p>
+
+                    <h3>1. Hardware Failure</h3>
+                    <div class="topic-card">
+                        <h4>What is Hardware Failure?</h4>
+                        <p>A hardware failure is when a component in the hardware fails and causes the computer to fail. Typical failures include:</p>
+                        <ul class="lesson-list">
+                            <li><strong>Hard disk failure:</strong> The hard disk is a physical device and the performance degrades over time</li>
+                            <li><strong>Failure of the mainboard:</strong> System board malfunction</li>
+                        </ul>
+                    </div>
+
+                    <h3>Countermeasures for Hardware Failure</h3>
+                    <p>A hard disk can be replaced, but to return the computer to the state it was in, backups need to have been carried out and be up to date. A mainboard can easily be replaced.</p>
+                    <p>Most computers are purchased with a warranty provision from one to three years. The warranty will repair hardware. Depending on the terms of the warranty, the computer will be repaired on-site or it may need to be returned to either the place of purchase or a service centre.</p>
+                    <p>Many hardware failures do not result in the loss of data. However, a hard disk failure may well result in the loss of data.</p>
+
+                    <div class="highlight-box">
+                        <h4>Key Points About Hardware Failure</h4>
+                        <p>Hardware failures are typically physical in nature and can often be resolved through replacement or repair. The critical factor in recovery is whether you have current backups of your data. Data is not usually lost in mainboard failures but is almost always at risk during hard disk failures.</p>
+                    </div>
+
+                    <h3>2. Software Failure</h3>
+                    <div class="topic-card">
+                        <h4>What is Software Failure?</h4>
+                        <p>Software failures are usually related to the corruption of the operating system software. These will often require re-installation of the operating system (OS).</p>
+                    </div>
+
+                    <h3>Examples of Operating Systems</h3>
+                    <ul class="lesson-list">
+                        <li><strong>Windows:</strong> Windows 7, Windows 8, Windows 10, Windows 11 (latest)</li>
+                        <li><strong>MacOS:</strong> MacOS Sierra, MacOS Sonoma, MacOS Catalina, etc.</li>
+                        <li><strong>Linux:</strong> Open-source operating system</li>
+                        <li><strong>Android:</strong> Mobile operating system</li>
+                    </ul>
+                </div>
+
+                <div class="lesson-section">
+                    <h2>Computer Theft & Vandalism</h2>
+                    <p>Computer theft is a significant problem for individuals and organizations. There are two main issues concerned with computer theft:</p>
+                    <ul class="lesson-list">
+                        <li>Physical replacement of the computer, including cost</li>
+                        <li>Loss of data that can be difficult to recover</li>
+                    </ul>
+
+                    <h3>Effects of Theft and Vandalism</h3>
+                    <p>Associated with computer theft is the potential for unauthorized access to private and personal data. The Australian newspaper reported on 11 June 2011 that:</p>
+                    <div class="highlight-box">
+                        <h4>Real-World Example: AICD Data Theft</h4>
+                        <p>A computer containing details of high-flying board members was stolen when thieves broke into the Australian Institute of Company Directors' office. The PC hard disk contained 66,000 records, including names, addresses, phone numbers and birth dates of 28,000 members. The rest belonged to clients. Some records had the names of personal assistants and their email addresses.</p>
+                    </div>
+
+                    <p>In fact, the physical cost of replacing a computer may well be very small compared to the cost of restoring data and the risks associated with the unauthorized access to data.</p>
+                    <p>Notebook computers are particularly vulnerable to theft. Notebook computers left in a visible position in vehicles can easily be stolen. Students carrying notebook computers to and from school are also vulnerable to mugging and theft.</p>
+
+                    <h3>Preventive Measures & Countermeasures</h3>
+                    <p>Some companies have installed tracking devices in notebook computers, making the computer difficult to dispose of without detection. The careful choice of user names, passwords and other biometric protection can render a stolen computer useless.</p>
+
+                    <p>Some of the steps that can be taken to reduce the possibility of notebook theft are:</p>
+                    <ul class="lesson-list">
+                        <li>Never leave the computer in a visible position in a vehicle</li>
+                        <li>Carry the computer in a nondescript bag, not an obvious computer bag</li>
+                        <li>Do not leave notebook computer in a meeting room if you need to leave the room</li>
+                        <li>Install a cable lock on the notebook computer</li>
+                        <li>Backup the data and keep the backups separately from the computer</li>
+                        <li>Ensure that your user name and password are hidden</li>
+                    </ul>
+
+                    <h3>Vandalism</h3>
+                    <p>Vandalism is malicious damage to a computer. Vandalism can be prevented by ensuring that people do not have access to the computer. The steps above for preventing theft are also useful in the prevention of vandalism.</p>
+                </div>
+
+                <div class="question-section">
+                    <h4>Activity 2G: Protecting Data in the Workplace</h4>
+                    <p><strong>Case Study: Adline Pty Ltd</strong></p>
+                    <p>Adline Pty Ltd is an advertising agency with 20 employees. There are 15 computers that are networked. Three people work in reception, which is also the main office. Jane and Frank are full-time employees. Gail works three half-days per week. Jane manually operates accounting software. Frank operates the switchboard and does general office duties. Gail provides technical support including hardware installation and software support.</p>
+
+                    <p><strong>Advise on the following practices and comment on how each of them could be improved:</strong></p>
+                    <ol>
+                        <li>Jane is the only person who knows how to back up the accounting software. This is not a problem as she works full-time.</li>
+                        <li>Jane currently backs up the accounting software once per week.</li>
+                        <li>Jane backs up the accounting program as well as the data files on a 100 MB disk.</li>
+                        <li>Jane locks the 100 MB backup disk in the office safe which is in reception.</li>
+                        <li>Frank enters meeting times in the calendar which is accessed by the employees. Frank makes a backup of the meeting files at irregular intervals.</li>
+                        <li>Frank, on one occasion, worked from a backup copy stored on the hard disk which did not have the current week's entries.</li>
+                        <li>Frank is a novice computer user and reads computer magazines and manuals at work to find out how to use a computer.</li>
+                        <li>Frank logs all deliveries to the office in a database created by Gail. The database is still a work in progress and Gail will complete it when she has time. Sometimes Frank will enter the same delivery twice.</li>
+                        <li>Frank, from time to time, creates letters to send to clients. He does not usually name the letter file until he saves the letter after it has been printed. Sometimes the computer freezes as the letter is being printed.</li>
+                        <li>Gail recently installed new browser software on the computers in reception when working late one evening. Both Jane and Frank were mystified about the changes when they turn on their computers the next morning.</li>
+                    </ol>
+                </div>
+
+                <a href="index.html" class="back-button">← Back to Home</a>
+            </div>
+        </main>
+    </div>
+
+    <footer style="text-align: center; padding: 20px; background: rgba(0, 0, 0, 0.05); color: #666; margin-top: auto;">
+        <p>&copy; Marianville Secondary School - Security Lessons by Mr. Marampau&trade;</p>
+    </footer>
+</body>
+</html>
