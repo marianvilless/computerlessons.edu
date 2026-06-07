@@ -1,0 +1,569 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Failures & Security - Marianville Secondary School</title>
+<style>
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .main-layout {
+            display: flex;
+            flex: 1;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background: rgba(242, 242, 242, 0.95);
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header nav ul li {
+            margin: 0;
+        }
+
+        header nav ul li a {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 8px 6px;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #ee892b 0%, #d65a29 100%);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(238, 137, 43, 0.10);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            background: linear-gradient(135deg, #d65a29 0%, #b93e1a 100%);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(214, 90, 41, 0.3);
+            transform: translateY(-2px);
+        }
+
+        header nav ul li a:hover::before {
+            left: 100%;
+        }
+
+        .sidebar {
+            width: 200px;
+            background: linear-gradient(180deg, #fff3e6 0%, #ffe0b2 100%);
+            padding: 24px 0 0 0;
+            box-shadow: 2px 0 8px rgba(214, 90, 41, 0.07);
+            min-height: 100vh;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 14px 24px;
+            margin: 8px 12px;
+            text-decoration: none;
+            color: #c03b07;
+            background: #fff;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar ul li a:hover {
+            background: linear-gradient(135deg, #d65a29 0%, #b93e1a 100%);
+            color: #fff;
+            border-left-color: #ff6b00;
+            transform: translateX(8px);
+        }
+
+        .content {
+            flex: 1;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.95);
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        .lesson-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, #ee892b 0%, #d65a29 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(214, 90, 41, 0.2);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lesson-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .lesson-header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .lesson-section {
+            margin-bottom: 40px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lesson-section h2 {
+            color: #ee892b;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ee892b;
+            position: relative;
+        }
+
+        .lesson-section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 0;
+            height: 3px;
+            background: #d65a29;
+            animation: expandWidth 0.8s ease-out;
+        }
+
+        @keyframes expandWidth {
+            to {
+                width: 100%;
+            }
+        }
+
+        .lesson-section h3 {
+            color: #d65a29;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        .lesson-section h2,
+        .lesson-section h3,
+        .lesson-section h4,
+        .question-section h4 {
+            margin-top: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .lesson-section p,
+        .question-section p,
+        .lesson-list li {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-section p {
+            padding: 10px 0;
+        }
+
+        .lesson-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lesson-list li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .lesson-list li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: #ee892b;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .topic-card {
+            background: linear-gradient(135deg, rgba(238, 137, 43, 0.05) 0%, rgba(214, 90, 41, 0.05) 100%);
+            border-left: 5px solid #ee892b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 20px rgba(214, 90, 41, 0.15);
+            border-left-color: #d65a29;
+        }
+
+        .topic-card h4 {
+            color: #d65a29;
+            margin-top: 0;
+            font-size: 1.1em;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6cc 98%);
+            border: 2px solid #ee892b;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            50% {
+                left: 100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .highlight-box h4 {
+            color: #ee892b;
+            margin-top: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-box p {
+            color: #666;
+            position: relative;
+            z-index: 1;
+        }
+
+        .question-section {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6eeff 100%);
+            border-left: 5px solid #4a90e2;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .question-section h4 {
+            color: #4a90e2;
+            margin-top: 0;
+        }
+
+        .question-section ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .question-section li {
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ee892b 0%, #d65a29 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #d65a29 0%, #b93e1a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(214, 90, 41, 0.3);
+        }
+
+        @media (max-width: 900px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                min-height: unset;
+                box-shadow: none;
+                padding: 0;
+            }
+            .content {
+                padding: 16px;
+            }
+            .lesson-header h1 {
+                font-size: 1.8em;
+            }
+            header nav ul {
+                flex-wrap: wrap;
+            }
+        }
+    
+</style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Lessons</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="exercises.html">Grade 11 ICT</a></li>
+                <li><a href="Grade12.html">Grade 12 ICT</a></li>
+                <li><a href="mathematics.html">Department</a></li>
+                <li><a href="Grade9.html">Grade 9 ICT</a></li>
+                <li><a href="index.html">📚 Lessons</a></li>
+            </ul>
+        </aside>
+        <main class="content">
+            <div class="lesson-container">
+                <div class="lesson-header">
+                    <h1>🖥️ Data Integrity & The Data Life Cycle</h1>
+                    <p>Understanding Data Integrity & The Data Life Cycle </p>
+                </div>
+
+
+			<div class="lesson-section">
+					<h3> By the end of this lesson, students will be able to: </h3>
+
+						<ul class = "lesson-list"> 
+							<li>Define data integrity as the accuracy and consistency of data throughout its entire life cycle.</li>
+								<li>Explain why maintaining data integrity is vital from the moment data is made until it is deleted.</li>
+							<li>Justify why reliable data is critical for making smart business and personal decisions.</li>
+								<li>Identify common threats to data integrity, including human errors (typos) and system bugs.</li> 
+						</ul> 
+				</div>
+
+				
+				<div class="lesson-section">
+					 <div class="highlight-box">
+						<h4>(at the start of the class to introduce the concept of data corruption).</h4>
+							<ul class= “lesson-list”>
+								<p> <strong>Instructions</strong>: Teacher to whisper this exact string of data to the first student in each row. You (students) will whisper it down the line to the last student.</p>
+									<p><strong>The Reveal</strong>: Last student will write their version on the board. Compare it to the Master Data String.</p>
+								<p><strong>Class Discussion</strong>: Did the numbers change? Did a decimal point vanish? Explain to the class that when data moves or gets handled, errors happen easily</p></ul>
+					</div>
+
+				</div>
+
+
+				<div class="lesson-section">
+
+					<h3>1.Key Definitions</h3>
+						 <ul class="lesson-list">
+							<li> <strong>Data</strong>: Raw facts, numbers, words, images, or details collected together for reference or analysis.
+								<li> <strong>Integrity</strong>: Being honest, whole, and undivided. If something has integrity, it is complete and unbroken.
+							<li> <strong>Data Integrity</strong>: The accuracy, completeness, and reliability of data. It means data stays exactly the same, correct, and unchanged no matter how many times it is saved, moved, or used.
+						</ul>
+
+
+					<h3>2. The Life Cycle of Data</h3>
+						<p>Just like a living plant goes from a seed to an adult, data has a journey. This journey is called the Data Life Cycle.</p>
+						<p> [1. Creation] ➔ [2. Storage] ➔ [3. Transfer] ➔ [4. Archival / Destruction]</p>
+				
+				<div class="topic-card">
+						 <ul class="lesson-list">
+							<li><strong>Phase 1: Creation (Generation)<strong>: The exact moment data is entered into a system.<br>Example: A cashier types your grocery prices into a computer registry.
+							</li>
+								<li><strong>Phase 2: Storage</strong>: Keeping the data safe inside a computer hard drive, SSD, or online cloud.<br>
+							Example: The school stores your final term grades on the school server database.</li>
+								<li><strong>Phase 3: Transfer</strong>: Moving data from one computer, network, or device to another.<br>Example: Sending an email receipt from a business server to a customer's smartphone.</li>
+									<li><strong>Phase 4: Archival & Destruction</strong>: Storing old data out of the way for long-term records, or securely deleting it when it is no longer needed.<br>Example: Archiving school attendance records from five years ago.</li>
+						</ul> 
+				</div>
+
+
+
+<h3>3. Why Data Integrity Matters Throughout the Life Cycle</h3>
+<p>If data gets corrupted or changed at any stage of its journey, it becomes completely useless or dangerous. Keeping data accurate ensures that systems run smoothly, computers don't crash, and people can trust the information they read online.</p>
+<h3>4. Why Reliable Data is Critical for Decision Making</h3>
+<p>We rely on data to make choices every single day. If data lacks integrity, bad choices happen:</p><br>
+<ul class="lesson-list">
+<li><strong>For Businesses</strong>: If an airline's booking data incorrectly states a plane is empty when it is full, they will overbook flights. This causes lost revenue, angry passengers, and logistical chaos.</li>
+<li><strong>For Personal Life</strong>: Imagine a medical database mixing up your blood type or allergy files. A doctor looking at that corrupted data could prescribe medication that makes you extremely sick.</li> </ul>
+
+
+
+<h3>5. Common Threats to Data Integrity</h5>
+<p>Data does not always stay perfect. It faces regular threats:</p>
+<ul class = "lesson-list">
+<li><strong>Human Error (Typos)</strong>: Someone accidentally hits the wrong key. (e.g., Typing K15.42 instead of K154.25).</li>
+<li><strong>Transfer Bugs</strong>: Software glitches that cut off files or garble texts while sending them over the internet.</li>
+<li><strong>System Crashes</strong>: Power outages or computer hardware failures that corrupt data while it is saving.</li>
+<li><strong>Malicious Malware</strong>: Viruses or hackers intentionally changing files to cause harm.</li>
+</ul>
+
+
+
+</div>
+
+
+	<div class="lesson-section">
+		<h3> Activity</h3>
+			<ul class = "lesson-list">
+				<p><strong>Task</strong>: Students draw a comic-strip style journey map showing a piece of data moving through its life cycle.</p>
+					<strong>Instructions</strong>:<br>
+						<li>Draw four distinct boxes: <strong>Creation</strong>, <strong>Storage</strong>, <strong>Transfer</strong>, and <strong> Archival</strong>.</li> </ul>
+						
+						<ol class = "lesson-list">
+								<li>Draw arrows linking the boxes together.</li>
+							<li>At each stage, draw and label one specific threat to data integrity.</li>
+						</ol>
+
+	</div>
+
+Stage	Threat Example to Draw
+1. Creation	⌨️ A user making a "Typo" on their keyboard.
+2. Storage	"System Crash" or sudden power cut breaking a hard drive.
+3. Transfer	"Network Bug" dropping data bars during an upload.
+4. Archival	
+
+				<div class = "question-section">
+						<h4>❓ Review & Assessment Questions (With Answers)</h4>
+							<ol>
+								<li><strong>What is data, integrity, and data integrity?</strong></li>
+								<ul>
+							<li><strong>Data</strong>: Raw numbers, words, or facts collected together.</li>
+						<li><strong>Integrity</strong>: Being whole, complete, and reliable.</li>
+					<li><strong>Data Integrity</strong>: The absolute accuracy and consistency of data throughout its entire life cycle.</li>
+								</ul>
+						
+								<li>What is the life cycle of data?</li>
+		
+			<ul>
+				<li>The entire journey data takes from the moment it is created, through where it is stored, how it is transferred, and finally where it is archived or deleted.</li>
+			</ul>
+
+					<li>Why is it essential to keep the integrity of data throughout its life-cycle?</li>
+						<ul>
+							<li>Because if data becomes corrupted or altered at any point, it becomes completely unreliable, which causes system errors and mistakes.</li> 
+						</ul>
+
+				
+
+	<li>Give examples of why reliable data is critical for business and personal decision making.</li>
+	<ul class="lesson-list">
+
+		<li>Business: Accurate sales figures help a store owner know how much stock to buy so they don't lose money.</li>
+			<li>Personal: Accurate medical data ensures doctors give you the right medicine and treatment.</li>
+		</ul>
+			<li>What are some common threats to data integrity?</li>
+				<ul class="lesson-list">
+					<li>Human errors (typos), software transfer bugs, computer crashes, and physical hardware damage.</li>
+				</ul>
+			</ol>
+</div>
+<a href="index.html" class="back-button">← Back to Home</a>
+</div>
+
+</main>
+</div>
+
+
+
+ <footer style="text-align: center; padding: 20px; background: rgba(0, 0, 0, 0.05); color: #666; margin-top: auto;">
+        <p>&copy; Marianville Secondary School - Security Lessons by Mr. Marampau&trade;</p>
+    </footer>
+</body>
+</html>
