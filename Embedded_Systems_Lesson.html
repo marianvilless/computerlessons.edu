@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Embedded Systems Lesson</title>
+<style>
+:root{
+    --primary:#0f172a;
+    --secondary:#1e293b;
+    --accent:#38bdf8;
+    --light:#f8fafc;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:Segoe UI,Arial,sans-serif;
+    background:linear-gradient(-45deg,#0f172a,#1e293b,#0c4a6e,#164e63);
+    background-size:400% 400%;
+    animation:bgMove 15s ease infinite;
+    color:#222;
+    line-height:1.6;
+}
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+.container{
+    max-width:1200px;
+    margin:40px auto;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+    animation:fadeIn 1s ease;
+}
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
+}
+.hero{
+    padding:60px;
+    text-align:center;
+    color:white;
+    background:linear-gradient(135deg,#0284c7,#06b6d4);
+}
+.hero h1{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+.hero p{font-size:1.2rem}
+.content{padding:40px}
+.section{
+    margin-bottom:35px;
+    padding:25px;
+    border-left:6px solid var(--accent);
+    background:#f8fafc;
+    border-radius:12px;
+    transition:.4s;
+}
+.section:hover{
+    transform:translateX(10px);
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+h2{
+    color:var(--primary);
+    margin-bottom:15px;
+}
+ul li{margin-left:25px}
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+th{
+    background:var(--primary);
+    color:white;
+}
+th,td{
+    padding:12px;
+    border:1px solid #ddd;
+}
+.cycle{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+.box{
+    padding:20px 35px;
+    background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+    color:white;
+    border-radius:15px;
+    font-size:1.3rem;
+    font-weight:bold;
+    animation:pulse 2s infinite;
+}
+.arrow{
+    font-size:2rem;
+    color:#0284c7;
+}
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+}
+.footer{
+    text-align:center;
+    padding:20px;
+    background:var(--secondary);
+    color:white;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="hero">
+<h1>Introduction to Embedded Systems</h1>
+<p>Benchmark 1.4.2.4 - Sense → Process → Actuate</p>
+</div>
+
+<div class="content">
+
+<div class="section">
+<h2>Learning Outcomes</h2>
+<ul>
+<li>Define an embedded system.</li>
+<li>Explain the Sense → Process → Actuate cycle.</li>
+<li>Identify common sensors and actuators.</li>
+<li>Create a model of an embedded system.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Definition</h2>
+<p>An embedded system is a dedicated computer system built into a larger mechanical or electrical system to perform a specific function.</p>
+</div>
+
+<div class="section">
+<h2>The Embedded System Cycle</h2>
+<div class="cycle">
+<div class="box">SENSE</div>
+<div class="arrow">➜</div>
+<div class="box">PROCESS</div>
+<div class="arrow">➜</div>
+<div class="box">ACTUATE</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Examples of Embedded Systems</h2>
+<table>
+<tr><th>Device</th><th>Function</th></tr>
+<tr><td>Microwave Oven</td><td>Controls cooking time and power</td></tr>
+<tr><td>Washing Machine</td><td>Controls wash cycles</td></tr>
+<tr><td>Car</td><td>Controls braking, airbags, fuel injection</td></tr>
+<tr><td>Printer</td><td>Controls printing operations</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>Common Sensors</h2>
+<table>
+<tr><th>Sensor</th><th>Purpose</th></tr>
+<tr><td>Temperature Sensor</td><td>Measures heat</td></tr>
+<tr><td>Motion Sensor</td><td>Detects movement</td></tr>
+<tr><td>Light Sensor</td><td>Detects brightness</td></tr>
+<tr><td>Touch Sensor</td><td>Detects contact</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>Common Actuators</h2>
+<table>
+<tr><th>Actuator</th><th>Purpose</th></tr>
+<tr><td>Motor</td><td>Creates movement</td></tr>
+<tr><td>Speaker</td><td>Produces sound</td></tr>
+<tr><td>LED</td><td>Produces light</td></tr>
+<tr><td>Pump</td><td>Moves liquid</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>Student Activity</h2>
+<p>Draw a model of an embedded system such as an automatic door, smart street light, or security alarm. Label the Sensor, Processor, and Actuator.</p>
+</div>
+
+</div>
+
+<div class="footer">
+Embedded Systems Lesson Resource
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Embedded Systems Lesson</title>
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(-45deg,#0f172a,#1e3a8a,#0891b2,#0f172a);
+background-size:400% 400%;
+animation:bg 15s ease infinite;
+color:#222;
+}
+@keyframes bg{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+.container{max-width:1300px;margin:30px auto;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.hero{padding:50px;text-align:center;color:white;background:linear-gradient(135deg,#0284c7,#06b6d4)}
+.content{padding:30px}
+.card{background:#f8fafc;margin:20px 0;padding:25px;border-radius:15px}
+h1,h2{margin-top:0}
+
+.flow{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:20px;
+flex-wrap:wrap;
+margin:30px 0;
+}
+.node{
+padding:25px 40px;
+border-radius:20px;
+color:white;
+font-weight:bold;
+font-size:1.3rem;
+cursor:pointer;
+transition:.3s;
+}
+.node:hover{transform:scale(1.08)}
+.sense{background:#0ea5e9}
+.process{background:#6366f1}
+.actuate{background:#22c55e}
+.arrow{
+font-size:3rem;
+animation:move 1.5s infinite;
+}
+@keyframes move{
+50%{transform:translateX(10px)}
+}
+
+.simulator{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+.panel{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-align:center;
+}
+
+button{
+padding:12px 18px;
+border:none;
+border-radius:10px;
+background:#0284c7;
+color:white;
+cursor:pointer;
+font-size:1rem;
+}
+button:hover{opacity:.9}
+
+#lamp{
+width:120px;height:120px;border-radius:50%;
+background:#444;margin:15px auto;
+transition:.5s;
+box-shadow:none;
+}
+.on{
+background:gold !important;
+box-shadow:0 0 40px gold;
+}
+
+.dataflow{
+height:140px;
+position:relative;
+margin-top:20px;
+border-radius:15px;
+background:#eef6ff;
+overflow:hidden;
+}
+.dot{
+position:absolute;
+width:20px;
+height:20px;
+border-radius:50%;
+background:red;
+top:60px;
+left:20px;
+display:none;
+}
+
+.animate{
+display:block;
+animation:travel 4s linear forwards;
+}
+
+@keyframes travel{
+0%{left:20px;background:#ef4444}
+40%{left:45%;background:#3b82f6}
+80%{left:80%;background:#22c55e}
+100%{left:95%;background:#22c55e}
+}
+
+.labels{
+display:flex;
+justify-content:space-between;
+padding:10px 20px;
+font-weight:bold;
+}
+
+#status{
+font-size:1.1rem;
+font-weight:bold;
+margin-top:10px;
+color:#0284c7;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="hero">
+<h1>Interactive Embedded Systems Lesson</h1>
+<p>Benchmark 1.4.2.4 — Sense → Process → Actuate</p>
+</div>
+
+<div class="content">
+
+<div class="card">
+<h2>Animated Embedded System Model</h2>
+
+<div class="flow">
+<div class="node sense">SENSE</div>
+<div class="arrow">➜</div>
+<div class="node process">PROCESS</div>
+<div class="arrow">➜</div>
+<div class="node actuate">ACTUATE</div>
+</div>
+
+<p>Click the simulation button below to watch data move through an embedded system.</p>
+</div>
+
+<div class="card">
+<h2>Interactive Smart Street Light Simulation</h2>
+
+<div class="simulator">
+
+<div class="panel">
+<h3>Sensor</h3>
+<p>Light Sensor detects darkness.</p>
+<button onclick="runSimulation()">Trigger Sensor</button>
+</div>
+
+<div class="panel">
+<h3>Processor</h3>
+<p>Microcontroller makes a decision.</p>
+<div id="status">Waiting...</div>
+</div>
+
+<div class="panel">
+<h3>Actuator</h3>
+<p>Street Lamp</p>
+<div id="lamp"></div>
+</div>
+
+</div>
+
+<div class="dataflow">
+<div class="labels">
+<span>Sensor</span>
+<span>Processor</span>
+<span>Actuator</span>
+</div>
+<div id="packet" class="dot"></div>
+</div>
+
+</div>
+
+<div class="card">
+<h2>Class Discussion</h2>
+<ul>
+<li>What information is sensed?</li>
+<li>What decision is processed?</li>
+<li>What action is actuated?</li>
+<li>How would the system behave during daytime?</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<script>
+function runSimulation(){
+
+const packet=document.getElementById("packet");
+const lamp=document.getElementById("lamp");
+const status=document.getElementById("status");
+
+lamp.classList.remove("on");
+packet.classList.remove("animate");
+void packet.offsetWidth;
+
+status.innerHTML="Sensor detects darkness...";
+
+packet.classList.add("animate");
+
+setTimeout(()=>{
+status.innerHTML="Processor analysing data...";
+},1500);
+
+setTimeout(()=>{
+status.innerHTML="Decision: Turn ON lamp";
+},2800);
+
+setTimeout(()=>{
+lamp.classList.add("on");
+status.innerHTML="Actuator activated successfully!";
+},4000);
+}
+</script>
+
+</body>
+</html>
