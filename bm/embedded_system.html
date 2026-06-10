@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture of Embedded Systems</title>
+<style>
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#0f172a;color:white}
+.hero{padding:60px;text-align:center;background:linear-gradient(135deg,#2563eb,#06b6d4)}
+.container{max-width:1400px;margin:auto;padding:30px}
+.card{background:#1e293b;padding:25px;margin:20px 0;border-radius:18px}
+h2{color:#38bdf8}
+.architecture{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
+.component{background:#0f172a;border:2px solid #38bdf8;padding:20px;border-radius:12px;text-align:center;cursor:pointer}
+.component:hover{box-shadow:0 0 20px #38bdf8}
+#info{margin-top:20px;padding:20px;background:#0f172a;border-left:4px solid #38bdf8;border-radius:10px}
+.flow{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap}
+.node{padding:15px 25px;background:#2563eb;border-radius:10px}
+.arrow{font-size:24px}
+button{padding:12px 20px;background:#06b6d4;color:white;border:none;border-radius:8px;cursor:pointer}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.example{background:#0f172a;padding:20px;border-radius:12px;cursor:pointer}
+.quiz-option{padding:10px;margin:8px 0;background:#0f172a;border-radius:8px;cursor:pointer}
+.correct{background:#16a34a!important}
+.wrong{background:#dc2626!important}
+</style>
+</head>
+<body>
+<div class="hero">
+<h1>Architecture of Embedded Systems</h1>
+<p>Interactive Learning Module</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2>Interactive Architecture Explorer</h2>
+<div class="architecture">
+<div class="component" onclick="showInfo('sensor')">Sensor</div>
+<div class="component" onclick="showInfo('processor')">Processor</div>
+<div class="component" onclick="showInfo('memory')">Memory</div>
+<div class="component" onclick="showInfo('io')">Input / Output</div>
+<div class="component" onclick="showInfo('comm')">Communication</div>
+<div class="component" onclick="showInfo('actuator')">Actuator</div>
+</div>
+<div id="info">Click a component to learn about it.</div>
+</div>
+
+<div class="card">
+<h2>Data Flow Diagram</h2>
+<div class="flow">
+<div class="node">Sensor</div>
+<div class="arrow">➜</div>
+<div class="node">Processor</div>
+<div class="arrow">➜</div>
+<div class="node">Memory</div>
+<div class="arrow">➜</div>
+<div class="node">Actuator</div>
+</div>
+<br>
+<button onclick="runFlow()">Run Simulation</button>
+<p id="status">Ready...</p>
+</div>
+
+<div class="card">
+<h2>Real World Examples</h2>
+<div class="gallery">
+<div class="example" onclick="example('door')">Automatic Door</div>
+<div class="example" onclick="example('alarm')">Security Alarm</div>
+<div class="example" onclick="example('street')">Smart Street Light</div>
+<div class="example" onclick="example('wash')">Washing Machine</div>
+</div>
+<div id="exampleBox"></div>
+</div>
+
+<div class="card">
+<h2>Knowledge Check</h2>
+<p>Which component stores program instructions?</p>
+<div class="quiz-option" onclick="check(this,false)">Sensor</div>
+<div class="quiz-option" onclick="check(this,true)">Memory</div>
+<div class="quiz-option" onclick="check(this,false)">Actuator</div>
+<div class="quiz-option" onclick="check(this,false)">Power Supply</div>
+<p id="quizResult"></p>
+</div>
+  
+
+</div>
+
+<script>
+const data={
+sensor:"Sensors collect information from the environment.",
+processor:"The processor is the brain of the embedded system.",
+memory:"Memory stores programs and data.",
+io:"Input/Output interfaces connect system components.",
+comm:"Communication modules exchange information.",
+actuator:"Actuators perform actions such as lighting LEDs or moving motors."
+};
+
+function showInfo(x){
+document.getElementById("info").innerHTML=data[x];
+}
+
+function runFlow(){
+let s=document.getElementById("status");
+s.innerHTML="Reading Sensor Data...";
+setTimeout(()=>s.innerHTML="Processing Information...",1500);
+setTimeout(()=>s.innerHTML="Accessing Memory...",3000);
+setTimeout(()=>s.innerHTML="Sending Command...",4500);
+setTimeout(()=>s.innerHTML="Actuator Activated!",6000);
+}
+
+function example(x){
+let t="";
+if(x=="door") t="Motion Sensor → Processor → Motor → Door Opens";
+if(x=="alarm") t="Motion Sensor → Processor → Siren → Alarm Sounds";
+if(x=="street") t="Light Sensor → Processor → Lamp → Light Turns On";
+if(x=="wash") t="Water Sensor → Processor → Motor → Wash Cycle Begins";
+document.getElementById("exampleBox").innerHTML="<br><b>"+t+"</b>";
+}
+
+function check(el,correct){
+document.querySelectorAll('.quiz-option').forEach(x=>x.classList.remove('correct','wrong'));
+if(correct){
+el.classList.add('correct');
+document.getElementById('quizResult').innerHTML="✓ Correct!";
+}else{
+el.classList.add('wrong');
+document.getElementById('quizResult').innerHTML="✗ Try again.";
+}
+}
+</script>
+</body>
+</html>
