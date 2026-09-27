@@ -483,6 +483,26 @@
             animation: fadeIn 0.5s ease-in;
         }
 
+        .download-button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(39, 174, 96, 0.2);
+        }
+
+        .download-button:hover {
+            background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3);
+        }
+
         @media (max-width: 900px) {
             .main-layout {
                 flex-direction: column;
@@ -541,12 +561,12 @@
                     <a href="https://marianville-record-cards.marianvilless.world" target="_blank" class="clearance-button">🗂️Student-Record-Cards</a>
                  </div>
             
-                    <div class="sidebar-bottom">
-                        <a href="https://marianville-guidance.marianvilless.world" target="_blank" class="clearance-button">☘️Guidance & Counselling DB</a>
-                    </div>
-                        <div class="sidebar-bottom">
-                            <a href="https://marianville-clearance-form.marianvilless.world" target="_blank" class="clearance-button">📋 Clearance Form</a>
-                        </div>
+                     <div class="sidebar-bottom">
+                         <a href="https://marianville-guidance.marianvilless.world" target="_blank" class="clearance-button">☘️Guidance & Counselling DB</a>
+                     </div>
+                         <div class="sidebar-bottom">
+                             <a href="https://marianville-clearance-form.marianvilless.world" target="_blank" class="clearance-button">📋 Clearance Form</a>
+                         </div>
         </aside>
 
         
@@ -561,6 +581,10 @@
                     <p style="margin-top: 30px; color: #999;">
                         Navigate to <strong>Lessons</strong> to explore comprehensive course materials
                     </p>
+
+                    <a href="./ohms_law_project.pdf" download class="download-button">
+                        📥 Download Ohm's Law Project
+                    </a>
 
                     <div class="lesson-link-card2">
                         <h4>Security Lessons</h4>
