@@ -483,13 +483,35 @@
             animation: fadeIn 0.5s ease-in;
         }
 
+        .preview-button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px 5px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(52, 152, 219, 0.2);
+        }
+
+        .preview-button:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+        }
+
         .download-button {
             display: inline-block;
             padding: 12px 24px;
-            margin: 10px 0;
+            margin: 10px 5px;
             background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
             color: white;
             text-decoration: none;
+            border: none;
             border-radius: 6px;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -501,6 +523,81 @@
             background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ee892b;
+        }
+
+        .modal-header h2 {
+            color: #ee892b;
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 28px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #ee892b;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         @media (max-width: 900px) {
@@ -534,6 +631,19 @@
             }
             header nav ul {
                 flex-wrap: wrap;
+            }
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+                padding: 20px;
+            }
+            .pdf-viewer {
+                height: 400px;
+            }
+            .preview-button, .download-button {
+                padding: 10px 16px;
+                font-size: 0.9em;
+                margin: 5px 2px;
             }
         }
     </style>
@@ -582,9 +692,14 @@
                         Navigate to <strong>Lessons</strong> to explore comprehensive course materials
                     </p>
 
-                    <a href="./ohms_law_project.pdf" download class="download-button">
-                        📥 Download Ohm's Law Project
-                    </a>
+                    <div style="margin: 20px 0;">
+                        <button onclick="openPdfModal()" class="preview-button">
+                            👁️ Preview Ohm's Law Project
+                        </button>
+                        <a href="./ohms_law_project.pdf" download class="download-button">
+                            📥 Download Ohm's Law Project
+                        </a>
+                    </div>
 
                     <div class="lesson-link-card2">
                         <h4>Security Lessons</h4>
@@ -662,6 +777,25 @@
         </main>
     </div>
 
+    <!-- PDF Preview Modal -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ohm's Law Project - Preview</h2>
+                <button class="close-modal" onclick="closePdfModal()">&times;</button>
+            </div>
+            <embed id="pdfEmbed" src="./ohms_law_project.pdf" type="application/pdf" class="pdf-viewer">
+            <div class="modal-actions">
+                <a href="./ohms_law_project.pdf" download class="download-button">
+                    📥 Download PDF
+                </a>
+                <button onclick="closePdfModal()" class="preview-button" style="background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);">
+                    ✕ Close Preview
+                </button>
+            </div>
+        </div>
+    </div>
+
     <footer style="text-align: center; padding: 20px; background: rgba(0, 0, 0, 0.05); color: #666; margin-top: auto;">
         <p>&copy; Marianville Secondary School - Security Lessons by Mr. Marampau&trade;</p>
     </footer>
@@ -677,6 +811,24 @@
             if (selectedPage) {
                 selectedPage.classList.add('active');
                 window.scrollTo(0, 0);
+            }
+        }
+
+        function openPdfModal() {
+            const modal = document.getElementById('pdfModal');
+            modal.classList.add('active');
+        }
+
+        function closePdfModal() {
+            const modal = document.getElementById('pdfModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('pdfModal');
+            if (event.target === modal) {
+                closePdfModal();
             }
         }
     </script>
