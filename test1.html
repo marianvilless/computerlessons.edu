@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Grade 11 ICT Unit 2 test specification, topic map, learning objectives, and revision strategies.">
+    <title>Unit 2 Test Specification &amp; Revision Blueprint | Marianville Secondary School</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #172033;
+            --muted: #5d6b82;
+            --blue: #1d4ed8;
+            --navy: #172554;
+            --cyan: #0891b2;
+            --amber: #ee892b;
+            --line: #dce5f1;
+            --paper: #fff;
+            --canvas: #eef3fb;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background:
+                radial-gradient(ellipse at 8% 0%, #c7d2fe 0, transparent 32rem),
+                radial-gradient(ellipse at 95% 18%, #a5f3fc 0, transparent 28rem),
+                var(--canvas);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+            line-height: 1.7;
+        }
+
+        a { color: var(--blue); }
+        a:focus-visible { outline: 3px solid var(--amber); outline-offset: 4px; }
+        .page {
+            width: min(1060px, calc(100% - 36px));
+            margin: 38px auto;
+            overflow: hidden;
+            background: var(--paper);
+            border: 1px solid #dfe7f1;
+            border-radius: 26px;
+            box-shadow: 0 28px 80px #182b4c24;
+            animation: enter 650ms ease both;
+        }
+        .hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: clamp(38px, 7vw, 76px);
+            color: white;
+            background: linear-gradient(122deg, #172554 0%, #1d4ed8 55%, #0891b2 100%);
+        }
+        .hero::before, .hero::after {
+            position: absolute;
+            z-index: -1;
+            content: "";
+            border: 1px solid #ffffff33;
+            border-radius: 50%;
+            background: #ffffff12;
+        }
+        .hero::before { width: 360px; height: 360px; top: -210px; right: -55px; }
+        .hero::after { width: 230px; height: 230px; right: 150px; bottom: -185px; }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 20px;
+            padding: 7px 12px;
+            color: #e0f2fe;
+            background: #ffffff19;
+            border: 1px solid #ffffff35;
+            border-radius: 999px;
+            font-size: .82rem;
+            font-weight: 750;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            max-width: 780px;
+            margin: 0;
+            font-size: clamp(2.25rem, 6vw, 4.2rem);
+            letter-spacing: -.045em;
+            line-height: 1.08;
+        }
+        .hero .subtitle {
+            max-width: 680px;
+            margin: 18px 0 0;
+            color: #e0f2fe;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+        }
+        .hero-meta span {
+            padding: 7px 12px;
+            color: #f8fafc;
+            background: #0f172a40;
+            border-radius: 8px;
+            font-size: .9rem;
+        }
+        .content { padding: clamp(26px, 6vw, 62px); }
+        .intro {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 24px;
+            padding: 24px;
+            background: linear-gradient(115deg, #eff6ff, #ecfeff);
+            border: 1px solid #dbeafe;
+            border-radius: 18px;
+        }
+        .intro p { margin: 0; }
+        .intro .greeting { margin-bottom: 7px; color: var(--navy); font-weight: 800; }
+        .intro-mark {
+            display: grid;
+            width: 62px;
+            aspect-ratio: 1;
+            place-items: center;
+            color: white;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-radius: 18px;
+            box-shadow: 0 10px 22px #1d4ed833;
+            font-size: 1.7rem;
+        }
+        section { margin-top: 48px; scroll-margin-top: 20px; }
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .section-number {
+            display: grid;
+            flex: 0 0 42px;
+            width: 42px;
+            aspect-ratio: 1;
+            place-items: center;
+            color: white;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            border-radius: 13px;
+            font-weight: 800;
+        }
+        h2 { margin: 0; color: var(--navy); font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.25; }
+        h3 { margin: 0 0 12px; color: var(--navy); font-size: 1.18rem; line-height: 1.4; }
+        p { margin: 10px 0 16px; }
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px #1725540b;
+        }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        caption { padding: 14px 18px; color: var(--muted); text-align: left; font-size: .9rem; }
+        th, td { padding: 15px 18px; vertical-align: top; border-top: 1px solid var(--line); }
+        thead th {
+            color: #fff;
+            background: var(--navy);
+            border: 0;
+            font-size: .9rem;
+            letter-spacing: .02em;
+        }
+        tbody tr:nth-child(even) { background: #f8faff; }
+        tbody th { min-width: 145px; color: var(--navy); }
+        .weight {
+            display: inline-block;
+            padding: 4px 9px;
+            color: #075985;
+            background: #e0f2fe;
+            border-radius: 999px;
+            font-weight: 750;
+            white-space: nowrap;
+        }
+        .topic-grid, .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .topic-card, .strategy-card {
+            position: relative;
+            padding: 22px;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px #1725540a;
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+        .topic-card:hover, .strategy-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px #17255416;
+        }
+        .topic-card { border-top: 4px solid var(--cyan); }
+        .topic-card:nth-child(2) { border-top-color: var(--blue); }
+        .topic-card:nth-child(3) { border-top-color: var(--amber); }
+        .topic-tag {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--muted);
+            font-size: .76rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+        ul { margin: 0; padding-left: 20px; }
+        li { margin: 10px 0; padding-left: 2px; }
+        li::marker { color: var(--cyan); }
+        .note {
+            margin-top: 20px;
+            padding: 18px 20px;
+            background: linear-gradient(100deg, #fff7ed, #fffbeb);
+            border: 1px solid #fed7aa;
+            border-left: 5px solid var(--amber);
+            border-radius: 12px;
+        }
+        .note strong { color: #9a3412; }
+        .strategy-card { background: linear-gradient(150deg, #f8faff, #fff); }
+        .strategy-card h3 { display: flex; align-items: center; gap: 10px; }
+        .strategy-icon { font-size: 1.3rem; }
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 52px;
+            padding-top: 22px;
+            color: var(--muted);
+            border-top: 1px solid var(--line);
+            font-size: .92rem;
+        }
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            color: white;
+            background: var(--navy);
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 160ms ease, transform 160ms ease;
+        }
+        .home-link:hover { color: white; background: var(--blue); transform: translateY(-2px); }
+        @keyframes enter {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 780px) {
+            .topic-grid, .strategy-grid { grid-template-columns: 1fr; }
+            .intro { grid-template-columns: 1fr; }
+            .intro-mark { display: none; }
+        }
+        @media (max-width: 560px) {
+            .page { width: 100%; margin: 0; border: 0; border-radius: 0; }
+            .hero, .content { padding-right: 22px; padding-left: 22px; }
+            th, td { padding: 12px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
+        @media print {
+            body { background: white; }
+            .page { width: 100%; margin: 0; border: 0; border-radius: 0; box-shadow: none; }
+            .hero { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .topic-card, .strategy-card, .table-wrap { break-inside: avoid; box-shadow: none; }
+            .home-link { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <header class="hero">
+            <p class="eyebrow">Marianville Secondary School</p>
+            <h1>Unit 2 Test Specification &amp; Revision Blueprint</h1>
+            <p class="subtitle">A clear roadmap for Grade 11 ICT: what the test covers, how it is structured, and what to revise.</p>
+            <div class="hero-meta" aria-label="Course details">
+                <span>Grade 11 ICT</span>
+                <span>Term 4 · Week 5</span>
+                <span>Computer Architecture</span>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <div>
+                    <p class="greeting">Dear Grade 11 ICT Students,</p>
+                    <p>Use this blueprint to prepare for the upcoming Unit 2 test. It maps the assessment structure, core content, and learning outcomes. Review each target carefully and use the strategies below to focus your study.</p>
+                </div>
+                <div class="intro-mark" aria-hidden="true">✦</div>
+            </div>
+
+            <section aria-labelledby="overview-title">
+                <div class="section-heading">
+                    <span class="section-number" aria-hidden="true">01</span>
+                    <h2 id="overview-title">Assessment Overview</h2>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <caption>Key conditions and focus for the Unit 2 test.</caption>
+                        <tbody>
+                            <tr><th scope="row">Date &amp; timing</th><td>Week 5, Term 4 · 20 minutes</td></tr>
+                            <tr><th scope="row">Total weighting</th><td><span class="weight">20 marks total</span></td></tr>
+                            <tr><th scope="row">Unit &amp; core focus</th><td>Unit 2: Data Books &amp; Component Specifications, Timing Technology, and Programming</td></tr>
+                            <tr><th scope="row">Allowed resources</th><td>No calculators, phones, external data sheets, or extra notes.</td></tr>
+                            <tr><th scope="row">Before you begin</th><td>Fill in your Name, Class, and Date completely before starting.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section aria-labelledby="structure-title">
+                <div class="section-heading">
+                    <span class="section-number" aria-hidden="true">02</span>
+                    <h2 id="structure-title">Test Structure &amp; Weighting Blueprint</h2>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <caption>Question formats and the skills each section assesses.</caption>
+                        <thead>
+                            <tr><th scope="col">Section</th><th scope="col">Question types / items</th><th scope="col">Marks</th><th scope="col">Target focus</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Section A</th><td>Multiple choice (Items 1–3, 6–8); traditional four-option selection.</td><td><span class="weight">6 marks</span><br>1 per item</td><td>Recall, identification, and basic calculation</td></tr>
+                            <tr><th scope="row">Section B</th><td>Short answer (Item 9); technical justification in prose.</td><td><span class="weight">2 marks</span></td><td>Engineering analysis and datasheet selection</td></tr>
+                            <tr><th scope="row">Part C</th><td>Fill in the blanks (Item 10); complete a text flow using predefined tokens.</td><td><span class="weight">10 marks approx.</span><br>(weighted context)</td><td>Logic trace and code-variable tracking</td></tr>
+                            <tr><th scope="row">Part C (continued)</th><td>Error-isolation code analysis (Item 11); identify syntax or logic bugs.</td><td><span class="weight">2 marks</span></td><td>Debugging and error-context troubleshooting</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <aside class="note"><strong>Blueprint note:</strong> the source specification labels the fill-in-the-blanks allocation as “10 Marks Approx. (Weighted Context)”; follow the instructions provided on the test paper.</aside>
+            </section>
+
+            <section aria-labelledby="topics-title">
+                <div class="section-heading">
+                    <span class="section-number" aria-hidden="true">03</span>
+                    <h2 id="topics-title">Detailed Core Topic Map &amp; Learning Objectives</h2>
+                </div>
+                <div class="topic-grid">
+                    <article class="topic-card">
+                        <span class="topic-tag">Topic A</span>
+                        <h3>Component Datasheets &amp; Operating Limits</h3>
+                        <ul>
+                            <li>Find absolute maximum safe operating parameters in manufacturer datasheets, such as maximum supply voltage and safe continuous current ratings.</li>
+                            <li>Calculate a component's range from its tolerance. For example, a 100 Ω resistor with 5% tolerance has a range of 95 Ω–105 Ω.</li>
+                            <li>Explain why safety margins (headroom buffers) matter when sizing components against standard circuit parameters.</li>
+                        </ul>
+                    </article>
+                    <article class="topic-card">
+                        <span class="topic-tag">Topic B</span>
+                        <h3>Timing Technology &amp; Digital Clocking</h3>
+                        <ul>
+                            <li>Distinguish digital wave shapes from analog types. System clocks use square waves for clean binary Low (0) and High (1) logic states.</li>
+                            <li>Identify the quartz crystal as the precise primary oscillator in computing modules.</li>
+                            <li>Convert metric frequency units. A 3.2 GHz CPU clock represents 3,200,000,000 baseline cycles per second.</li>
+                            <li>Recognize other factors affecting instruction speed, including architecture pipelines, cache structures, and multi-core design.</li>
+                        </ul>
+                    </article>
+                    <article class="topic-card">
+                        <span class="topic-tag">Topic C</span>
+                        <h3>Program Code Analysis &amp; Logical Tracking</h3>
+                        <ul>
+                            <li>Trace structured code blocks in sequence to determine expected program output.</li>
+                            <li>Track inputs, parameter transformations, conditional boundaries (<code>if</code>/<code>elif</code>/<code>else</code>), and final printed values.</li>
+                            <li>Identify syntax inconsistencies or logical flaws and explain a suitable technical correction.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section aria-labelledby="strategies-title">
+                <div class="section-heading">
+                    <span class="section-number" aria-hidden="true">04</span>
+                    <h2 id="strategies-title">High-Impact Student Study Strategies</h2>
+                </div>
+                <div class="strategy-grid">
+                    <article class="strategy-card">
+                        <h3><span class="strategy-icon" aria-hidden="true">⌨</span>Active Variable Drills</h3>
+                        <p>Use code snippets from previous worksheets. Substitute different starting values (for example, <code>x = 7</code> or <code>y = 2</code>) and work through the output on paper without an interpreter.</p>
+                    </article>
+                    <article class="strategy-card">
+                        <h3><span class="strategy-icon" aria-hidden="true">⚙</span>Re-verify Engineering Tables</h3>
+                        <p>Review component data tables. Practise identifying electrical thresholds and continuous values, then calculate tolerance bands for different baselines.</p>
+                    </article>
+                    <article class="strategy-card">
+                        <h3><span class="strategy-icon" aria-hidden="true">◷</span>Master Frequency Conversions</h3>
+                        <p>Practise moving between Hertz, Kilohertz, Megahertz, and Gigahertz so you can calculate cycle counts accurately.</p>
+                    </article>
+                    <article class="strategy-card">
+                        <h3><span class="strategy-icon" aria-hidden="true">⏱</span>Simulate the Exam</h3>
+                        <p>Set a strict 20-minute timer and complete a previous unit review quietly. Practising pacing can help you feel prepared for the test.</p>
+                    </article>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <span>Prepared by Mr. Marampau · Source reference: marianvilless.world</span>
+                <a class="home-link" href="./index.html">← Back to the main page</a>
+            </footer>
+        </div>
+    </main>
+</body>
+</html>
